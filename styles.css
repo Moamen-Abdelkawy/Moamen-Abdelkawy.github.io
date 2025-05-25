@@ -1,0 +1,191 @@
+/* Base styles for Moamen Abdelkawy's professional profile */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Header and profile section */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.profile-image {
+    border-radius: 50%;
+    max-width: 200px;
+    margin: 0 auto 20px;
+    display: block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+h1 {
+    color: #0056b3;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+h2 {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    font-size: 1.8rem;
+}
+
+h3 {
+    color: #343a40;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+/* Sections styling */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Lists styling */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Experience and education entries */
+.experience-entry, .education-entry {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.experience-entry:last-child, .education-entry:last-child {
+    border-bottom: none;
+}
+
+.experience-title, .education-degree {
+    font-weight: bold;
+    color: #343a40;
+}
+
+.experience-company, .education-school {
+    font-weight: 600;
+    color: #0056b3;
+}
+
+.experience-date, .education-date {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Skills section */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background-color: #e9f5ff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #0056b3;
+    border: 1px solid #b8daff;
+}
+
+/* Projects section */
+.project {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #0056b3;
+    background-color: #f8f9fa;
+}
+
+.project h4 {
+    margin-top: 0;
+    color: #0056b3;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Links styling */
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #003d7e;
+}
+
+/* Contact section */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact-link {
+    margin: 0 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    section {
+        padding: 15px;
+    }
+}
