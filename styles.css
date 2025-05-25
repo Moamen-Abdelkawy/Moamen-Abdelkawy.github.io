@@ -2,17 +2,20 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #222;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #fff;
 }
 
 /* Header and profile section */
 header {
     text-align: center;
     margin-bottom: 30px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .profile-container {
@@ -38,21 +41,21 @@ header {
 }
 
 h1 {
-    color: #0056b3;
+    color: #004085;
     margin-bottom: 10px;
     font-size: 2.5rem;
 }
 
 h2 {
-    color: #0056b3;
-    border-bottom: 2px solid #0056b3;
+    color: #004085;
+    border-bottom: 2px solid #004085;
     padding-bottom: 8px;
     margin-top: 30px;
     font-size: 1.8rem;
 }
 
 h3 {
-    color: #343a40;
+    color: #222;
     margin-top: 20px;
     font-size: 1.5rem;
 }
@@ -62,6 +65,7 @@ section {
     margin-bottom: 40px;
     padding: 20px;
     background-color: #fff;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -79,7 +83,7 @@ li {
 .experience-entry, .education-entry {
     margin-bottom: 25px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .experience-entry:last-child, .education-entry:last-child {
@@ -88,16 +92,16 @@ li {
 
 .experience-title, .education-degree {
     font-weight: bold;
-    color: #343a40;
+    color: #222;
 }
 
 .experience-company, .education-school {
     font-weight: 600;
-    color: #0056b3;
+    color: #004085;
 }
 
 .experience-date, .education-date {
-    color: #6c757d;
+    color: #495057;
     font-style: italic;
 }
 
@@ -109,14 +113,14 @@ li {
 }
 
 .skill-tag {
-    background-color: #e9f5ff;
+    background-color: #e6f2ff;
     padding: 5px 10px;
     border-radius: 4px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
     font-size: 0.9rem;
-    color: #0056b3;
+    color: #004085;
     border: 1px solid #b8daff;
 }
 
@@ -124,13 +128,13 @@ li {
 .project {
     padding: 15px;
     margin-bottom: 20px;
-    border-left: 4px solid #0056b3;
+    border-left: 4px solid #004085;
     background-color: #f8f9fa;
 }
 
 .project h4 {
     margin-top: 0;
-    color: #0056b3;
+    color: #004085;
 }
 
 /* Footer */
@@ -138,20 +142,21 @@ footer {
     margin-top: 50px;
     text-align: center;
     padding: 20px;
-    color: #6c757d;
+    color: #495057;
     font-size: 0.9rem;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid #dee2e6;
+    background-color: #f8f9fa;
 }
 
 /* Links styling */
 a {
-    color: #0056b3;
+    color: #004085;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #003d7e;
+    color: #002752;
 }
 
 /* Contact section */
@@ -164,6 +169,14 @@ a:hover {
 
 .contact-link {
     margin: 0 15px;
+    background-color: #e6f2ff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: #004085;
+}
+
+.contact-link:hover {
+    background-color: #cce5ff;
 }
 
 /* Responsive design */
@@ -187,5 +200,20 @@ a:hover {
 
     section {
         padding: 15px;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: none;
+        box-shadow: none;
     }
 }
