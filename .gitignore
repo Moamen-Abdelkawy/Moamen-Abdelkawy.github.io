@@ -1,2 +1,7 @@
-# Ignore the deployment guide file
+# Ignore local working files and private capstone source documents
+capstone/
+preview.html
 deployment_guide.md
+state/
+.DS_Store
+Thumbs.db

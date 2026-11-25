@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panamax Freight Rate Forecasting | Moamen Abdelkawy</title>
+  <meta name="description" content="Research brief on multi-horizon XGBoost forecasting for Panamax dry bulk freight rates (P1A_82 and P3A_82) with phase-shift calibration and commercial backtesting.">
+  <meta name="author" content="Moamen Abdelkawy">
+  <link rel="canonical" href="https://moamen-abdelkawy.github.io/panamax-forecasting.html">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Moamen Abdelkawy">
+  <meta property="og:title" content="Panamax Freight Rate Forecasting | Moamen Abdelkawy">
+  <meta property="og:description" content="245 features from 701 maritime indicators, phase-shift calibration cutting RMSE by 34.2% on average, and 77.2% win rate across 6,268 simulated trades.">
+  <meta property="og:url" content="https://moamen-abdelkawy.github.io/panamax-forecasting.html">
+  <meta property="og:image" content="https://moamen-abdelkawy.github.io/og-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@MoamenAbdelkawy">
+  <meta name="twitter:image" content="https://moamen-abdelkawy.github.io/og-card.png">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2236'/%3E%3Cpath d='M17 17 L29.5 7 V27.5 Z' fill='%233F72A3'/%3E%3Cpath d='M17 17 L29.5 12.5 V22 Z' fill='%238FB9DD'/%3E%3Cpath d='M3.5 19.5 L7 15.5 L10.5 18.5 L13.5 13.5 L17 17' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Advanced Freight Rate Forecasting for Panamax Dry Bulk Carriers using Machine Learning",
+    "description": "Multi-horizon XGBoost framework for forecasting Transatlantic (P1A_82) and Transpacific (P3A_82) Panamax freight rates with phase-shift calibration.",
+    "url": "https://moamen-abdelkawy.github.io/panamax-forecasting.html",
+    "datePublished": "2025-12-02",
+    "author": [
+      { "@type": "Person", "name": "Moamen Abdelkawy", "url": "https://moamen-abdelkawy.github.io/" },
+      { "@type": "Person", "name": "Manuel Quinto Sabelli" }
+    ],
+    "about": ["Maritime economics", "Dry bulk shipping", "XGBoost", "Phase-shift calibration", "Time series forecasting"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__name" href="index.html">← Moamen Abdelkawy</a>
+      <nav class="site-nav" aria-label="Sections">
+        <ul class="site-nav__list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#features">Data &amp; Features</a></li>
+          <li><a href="#calibration">Calibration</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#validation">Validation</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article>
+      <header class="brief-hero" id="top">
+        <div class="brief-hero__inner">
+          <p class="brief-kicker">Research Brief · MSc Capstone &amp; AFOS 14th General Assembly</p>
+          <h1 class="brief-title">Advanced Freight Rate Forecasting for Panamax Dry Bulk Carriers</h1>
+          <p class="brief-meta">Moamen Abdelkawy and Manuel Quinto Sabelli · MSc in Financial Engineering Capstone, WorldQuant University (Dec 2025), supported with proprietary market data from National Navigation Company (Cairo). Presented by Moamen Abdelkawy at the 14th Ordinary General Assembly of the Arab Federation of Shipping (AFOS).</p>
+
+          <div class="brief-summary" aria-label="Headline outcomes">
+            <div>
+              <span class="brief-stat__value">34.2%</span>
+              <span class="brief-stat__label">Mean RMSE reduction after phase-shift calibration (up to 64.3%)</span>
+            </div>
+            <div>
+              <span class="brief-stat__value">0.339</span>
+              <span class="brief-stat__label">Best Theil’s U₁ vs. random walk (Pacific 1-week, R² = 0.951)</span>
+            </div>
+            <div>
+              <span class="brief-stat__value">93.4% / 97.6%</span>
+              <span class="brief-stat__label">1-week threshold directional accuracy (Atlantic / Pacific)</span>
+            </div>
+            <div>
+              <span class="brief-stat__value">$778.0M</span>
+              <span class="brief-stat__label">Simulated base-case P&amp;L across 6,268 trades (77.2% win rate)</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- 1. Overview & Market Structure -->
+      <section class="section" id="overview" aria-labelledby="overview-title">
+        <div class="section__inner">
+          <h2 class="section__title" id="overview-title">Market problem</h2>
+          <div class="section__body prose">
+            <p>Dry bulk shipping carries over 40% of global maritime trade, and Panamax vessels account for 23.1% of the dry bulk fleet. Over the study window (January 2019 – November 2025, 1,796 trading days), Panamax spot rates swung between $3,785 and $47,500 per day—a 12.5× range overall, and up to 22× on the Atlantic route—exposing shipowners, charterers, and commodity desks to sharp timing risk.</p>
+            <p>Classical linear time-series models such as ARIMA and GARCH assume stable structure and linear dynamics, failing during sudden geopolitical or supply shocks. Rather than bolting classical and ML models together in a fragile two-stage hybrid where stage-1 errors compound, we designed an <strong>implicit hybrid</strong>: embedding autoregressive, volatility, and economic spread structure directly inside six independent XGBoost models—one for each route-horizon pair.</p>
+
+            <div class="two-col">
+              <div class="basin-card">
+                <h3 class="basin-card__title">P1A_82 · Atlantic Basin</h3>
+                <p class="basin-card__route">Skaw–Gibraltar Transatlantic round voyage</p>
+                <p>Agricultural and long-haul complex (grain, soy, coal). Sensitive to South American harvests, river levels, and Atlantic hurricanes; longer voyages slow fleet rebalancing and produce wider rate swings.</p>
+              </div>
+              <div class="basin-card">
+                <h3 class="basin-card__title">P3A_82 · Pacific Basin</h3>
+                <p class="basin-card__route">Japan–South Korea Transpacific round voyage</p>
+                <p>Industrial commodity complex (coal and iron ore) anchored by Chinese, Japanese, Korean, and Indian power and steel output. Shorter rotations allow faster fleet repositioning and higher short-horizon predictability.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Data & Feature Engineering -->
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section__inner">
+          <h2 class="section__title" id="features-title">Data &amp; features</h2>
+          <div class="section__body prose">
+            <p>We harmonized 701 raw indicators from three institutional sources—<strong>Clarksons Shipping Intelligence</strong> (634 supply, demand, and congestion series), the <strong>Baltic Exchange</strong> (spot routes, BPI/BDI/C5TC indices, and 22 Forward Freight Assessment contracts), and <strong>Ship &amp; Bunker</strong> (daily VLSFO and MGO fuel prices)—onto a 1,796-day Baltic trading calendar.</p>
+            <p>All predictors carry a strict 1-day publication lag (<em>t</em> − 1 predicts <em>t</em> + <em>h</em>) to eliminate look-ahead bias, and target horizons (7, 14, and 28 calendar days) are modeled as stationary logarithmic returns <em>y</em><sub>t,h</sub> = ln(<em>P</em><sub>t+h</sub> / <em>P</em><sub>t</sub>) (ADF <em>p</em> &lt; 0.001 across all six targets). After frequency-aware VIF correlation filtering (|<em>ρ</em>| &gt; 0.95) reduced 701 series to 186 base inputs, differential transformations (level, first difference, percent change, YoY, and 30-day rolling volatility applied only to true daily series) produced <strong>245 engineered features</strong> across seven economic categories.</p>
+
+            <table class="results">
+              <caption class="visually-hidden">Feature categories and mean gain importance across all six XGBoost models</caption>
+              <thead>
+                <tr><th scope="col">Feature category (count)</th><th scope="col">Mean gain share</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Autoregressive dynamics (90) — lagged spot rates (1–28 days)</th><td>42.3%</td></tr>
+                <tr><th scope="row">Momentum (45) — cross-route log returns and term-structure trends</th><td>18.4%</td></tr>
+                <tr><th scope="row">Cross-route &amp; fuel arbitrage (12) — Atlantic–Pacific &amp; Rotterdam–Singapore spreads</th><td>16.1%</td></tr>
+                <tr><th scope="row">Volatility clustering (30) — 7-, 14-, and 30-day rolling volatility</th><td>10.8%</td></tr>
+                <tr><th scope="row">Fundamental supply–demand (25) — orderbook, demolition, hire indices, trade flows</th><td>6.7%</td></tr>
+                <tr><th scope="row">Technical indicators (25) — RSI(14), MACD, Bollinger Band position</th><td>4.1%</td></tr>
+                <tr><th scope="row">Missing-data liquidity flags (18) — weekend, holiday, and thin-market regimes</th><td>1.6%</td></tr>
+              </tbody>
+            </table>
+
+            <p class="table-caption">Empirical surprise: while FFA forward curves contributed under 3% of total gain, the <strong>Atlantic–Pacific basin spread</strong> (<code>P1A_82 − P3A_82</code>) ranked <strong>#2 overall</strong> globally, and the <strong>Rotterdam–Singapore bunker spread</strong> ranked <strong>#6</strong>.</p>
+
+            <figure class="figure-card">
+              <img src="assets/panamax-feature-importance.webp" alt="Horizontal bar chart of the top 20 features by mean gain importance across all six XGBoost models, showing P1A_82_Lag7 first, Basin_Arbitrage second, and Bunker_Spread sixth." width="1200" height="800" loading="lazy">
+              <figcaption>Top 20 individual features by mean gain importance averaged across all six route-horizon models. Cross-basin arbitrage and regional bunker fuel spreads consistently outrank slow-moving macro aggregates on daily horizons.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Phase-Shift Calibration -->
+      <section class="section" id="calibration" aria-labelledby="calibration-title">
+        <div class="section__inner">
+          <h2 class="section__title" id="calibration-title">Phase-shift calibration</h2>
+          <div class="section__body prose">
+            <p>Initial out-of-sample evaluation revealed a striking diagnostic paradox: raw models achieved 74.9% average threshold directional accuracy (84.2%–89.5% at 1 week), yet averaged a Theil’s U₁ of 0.959—barely ahead of a random walk. Plotting predictions against actuals showed that forecast peaks and troughs matched market shape closely, but consistently arrived <strong>5 to 7 days early</strong>.</p>
+            <p>Permutation testing (1,000 random shuffles per model, <em>p</em> &lt; 0.001) and day-of-week ablation tests ruled out calendar artifacts. The root cause lies in <strong>freight market microstructure</strong>: unlike exchange-traded equities with millisecond prints, dry bulk fixtures are negotiated bilaterally over phone and chat and aggregated into published Baltic indices with a 5–7 day reporting lag.</p>
+
+            <figure class="lag-diagram">
+              <svg viewBox="0 0 820 205" role="img" aria-label="Microstructure timeline showing an event on the water at day t0, bilateral broker fixtures at t0 plus 3 to 5 days, and Baltic Exchange index aggregation at t0 plus 5 to 7 days">
+                <line x1="60" y1="72" x2="760" y2="72" stroke="#B3C3D2" stroke-width="2"/>
+                <line x1="60" y1="72" x2="760" y2="72" stroke="#0D4F8B" stroke-width="2" stroke-dasharray="4 5"/>
+
+                <!-- Node 1 -->
+                <circle cx="130" cy="72" r="10" fill="#FFFFFF" stroke="#0F2236" stroke-width="2.5"/>
+                <circle cx="130" cy="72" r="3.5" fill="#0F2236"/>
+                <text x="130" y="34" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14.5" font-weight="600" fill="#0F2236">t₀ · Event on the water</text>
+                <text x="130" y="108" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">Port congestion, weather,</text>
+                <text x="130" y="128" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">or cargo demand shock</text>
+
+                <!-- Node 2 -->
+                <circle cx="410" cy="72" r="10" fill="#FFFFFF" stroke="#0D4F8B" stroke-width="2.5"/>
+                <circle cx="410" cy="72" r="3.5" fill="#0D4F8B"/>
+                <text x="410" y="34" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14.5" font-weight="600" fill="#0D4F8B">t₀ + 3–5d · Broker fixtures</text>
+                <text x="410" y="108" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">Bilateral negotiations and</text>
+                <text x="410" y="128" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">private charter deals</text>
+
+                <!-- Node 3 -->
+                <circle cx="690" cy="72" r="10" fill="#FFFFFF" stroke="#B0145F" stroke-width="2.5"/>
+                <circle cx="690" cy="72" r="3.5" fill="#B0145F"/>
+                <text x="690" y="34" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14.5" font-weight="600" fill="#B0145F">t₀ + 5–7d · Screen print</text>
+                <text x="690" y="108" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">Panel aggregation recorded</text>
+                <text x="690" y="128" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13.5" fill="#3B4B5B">in benchmark spot index</text>
+
+                <rect x="165" y="156" width="490" height="34" rx="3" fill="#FFFFFF" stroke="#D9E2EA"/>
+                <text x="410" y="178" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#0F2236">Optimal shift s*: +5 days (1-week models) · +7 days (2- &amp; 4-week models)</text>
+              </svg>
+              <figcaption>Phase-shift calibration aligns predictions to the reporting cycle: raw 1-week forecasts correlate at 0.821 (Atlantic) and 0.879 (Pacific) before shifting, jumping to <strong>0.985</strong> and <strong>0.994</strong> after shifting by <em>s*</em> = +5 days.</figcaption>
+            </figure>
+
+            <div class="figure-pair">
+              <figure class="figure-card">
+                <img src="assets/panamax-p1a-calibration.webp" alt="Atlantic P1A_82 1-week forecast before and after 5-day phase-shift calibration over the final 200 test days, increasing correlation to 0.985." width="1172" height="834" loading="lazy">
+                <figcaption><strong>Atlantic (P1A_82, 1-week):</strong> Raw forecasts (top) lead actual spot rates by 5 days; post-calibration (bottom), peaks and troughs align at <em>r</em> = 0.985.</figcaption>
+              </figure>
+              <figure class="figure-card">
+                <img src="assets/panamax-p3a-calibration.webp" alt="Pacific P3A_82 1-week forecast before and after 5-day phase-shift calibration over the final 200 test days, increasing correlation to 0.994." width="1173" height="834" loading="lazy">
+                <figcaption><strong>Pacific (P3A_82, 1-week):</strong> Applying the same 5-day calibration aligns forecast and benchmark trajectories at <em>r</em> = 0.994.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Statistical Results -->
+      <section class="section" id="results" aria-labelledby="results-title">
+        <div class="section__inner">
+          <h2 class="section__title" id="results-title">Statistical results</h2>
+          <div class="section__body prose">
+            <p>Across the out-of-sample test set (1,398–1,415 trading days per model via expanding-window evaluation), phase-shift calibration reduced RMSE by an average of <strong>34.2%</strong>—and by 57.9%–64.3% at the 1-week operational horizon—bringing every route and horizon comfortably below both the random walk (U₁ &lt; 1.0) and 60-day moving average (U₃ &lt; 1.0) benchmarks.</p>
+
+            <div class="table-scroll" tabindex="0" aria-label="Post-calibration statistical performance across all six models">
+              <table class="results results--wide">
+                <caption class="visually-hidden">Out-of-sample post-calibration statistical performance across all six models</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col">Shift (d)</th>
+                    <th scope="col">RMSE ($)</th>
+                    <th scope="col">Δ RMSE</th>
+                    <th scope="col">Theil’s U₁</th>
+                    <th scope="col">Theil’s U₃</th>
+                    <th scope="col">R²</th>
+                    <th scope="col">TDA (%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">P1A_82 · 1-week</th><td>+5</td><td>1,403</td><td>−57.9%</td><td>0.394</td><td>0.258</td><td>0.912</td><td>93.4%</td></tr>
+                  <tr><th scope="row">P1A_82 · 2-week</th><td>+7</td><td>3,230</td><td>−29.4%</td><td>0.659</td><td>0.557</td><td>0.823</td><td>79.0%</td></tr>
+                  <tr><th scope="row">P1A_82 · 4-week</th><td>+7</td><td>5,136</td><td>−5.4%</td><td>0.877</td><td>0.804</td><td>0.687</td><td>65.7%</td></tr>
+                  <tr><th scope="row">P3A_82 · 1-week</th><td>+5</td><td>814</td><td>−64.3%</td><td>0.339</td><td>0.184</td><td>0.951</td><td>97.6%</td></tr>
+                  <tr><th scope="row">P3A_82 · 2-week</th><td>+7</td><td>2,225</td><td>−36.1%</td><td>0.639</td><td>0.459</td><td>0.871</td><td>82.3%</td></tr>
+                  <tr><th scope="row">P3A_82 · 4-week</th><td>+7</td><td>4,186</td><td>−11.8%</td><td>0.878</td><td>0.758</td><td>0.734</td><td>70.0%</td></tr>
+                  <tr class="results__mean"><th scope="row">Mean (6 models)</th><td>+6.3</td><td>2,832</td><td>−34.2%</td><td>0.631</td><td>0.503</td><td>0.830</td><td>81.3%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-caption">U₁ compares model RMSE to a naive random walk; U₃ compares against a 60-day moving average. TDA (Threshold Directional Accuracy) evaluates directional calls on significant moves exceeding $500/day.</p>
+
+            <figure class="figure-card">
+              <img src="assets/panamax-rmse-calibration.webp" alt="Grouped bar chart comparing RMSE in dollars per day before and after phase-shift calibration across all six route-horizon models." width="1200" height="602" loading="lazy">
+              <figcaption>Out-of-sample RMSE ($/day) before vs. after phase-shift calibration across all six route-horizon models.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Commercial Validation & Limitations -->
+      <section class="section" id="validation" aria-labelledby="validation-title">
+        <div class="section__inner">
+          <h2 class="section__title" id="validation-title">Commercial validation</h2>
+          <div class="section__body prose">
+            <p>To test whether statistical gains translate into economic value, we simulated directional long/short positions whenever forecast deviations exceeded horizon-adjusted action margins (<em>τ</em> = $500, $750, and $1,250/day for 1-, 2-, and 4-week horizons). Under the base-case assumption ($250 brokerage cost per trade, 45-day holding duration), phase-shift calibration lifted simulated P&amp;L by <strong>+58.7%</strong> (+$287.8M) to <strong>$778.0M</strong> across 6,268 trades over 2020–2025.</p>
+
+            <div class="table-scroll" tabindex="0" aria-label="Base-case simulated trading performance across all six models">
+              <table class="results results--wide">
+                <caption class="visually-hidden">Simulated trading performance in the base case ($250 cost, 45-day duration)</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col">Trades</th>
+                    <th scope="col">Total P&amp;L ($M)</th>
+                    <th scope="col">Avg P&amp;L ($)</th>
+                    <th scope="col">Win rate</th>
+                    <th scope="col">Max DD ($M)</th>
+                    <th scope="col">Sharpe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">P1A_82 · 1-week</th><td>1,234</td><td>157.4</td><td>127,500</td><td>82.1%</td><td>−12.3</td><td>2.87</td></tr>
+                  <tr><th scope="row">P1A_82 · 2-week</th><td>1,166</td><td>180.2</td><td>154,500</td><td>75.6%</td><td>−18.7</td><td>2.41</td></tr>
+                  <tr><th scope="row">P1A_82 · 4-week</th><td>1,016</td><td>136.7</td><td>134,500</td><td>68.3%</td><td>−23.4</td><td>1.98</td></tr>
+                  <tr><th scope="row">P3A_82 · 1-week</th><td>1,138</td><td>100.9</td><td>88,700</td><td>85.7%</td><td>−8.9</td><td>3.12</td></tr>
+                  <tr><th scope="row">P3A_82 · 2-week</th><td>972</td><td>118.6</td><td>122,000</td><td>78.2%</td><td>−14.2</td><td>2.53</td></tr>
+                  <tr><th scope="row">P3A_82 · 4-week</th><td>742</td><td>84.2</td><td>113,500</td><td>73.5%</td><td>−19.6</td><td>2.08</td></tr>
+                  <tr class="results__mean"><th scope="row">Total / Aggregate</th><td>6,268</td><td>778.0</td><td>124,100</td><td>77.2%</td><td>−45.1</td><td>2.61</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-caption">Base-case simulation (<em>C</em> = $250/trade, <em>D</em> = 45 days). Sharpe ratios are annualized from trade-level P&amp;L without risk-free rate adjustment.</p>
+
+            <h3 class="prose-subheading">Robustness &amp; practical limitations</h3>
+            <p>Profitability held across all <strong>54 sensitivity scenarios</strong> varying transaction costs ($0, $250, $500) and holding periods (30, 45, 60 days), with even the harshest stress case ($500 cost, 30-day hold) generating $526.6M. Across subperiods—pre-COVID stability (2019–2020 Q1, U₁ = 0.58), COVID volatility spikes (2020 Q2–2021, U₁ = 0.68, TDA 88.7%), and post-COVID normalization (2022–2025, U₁ = 0.61)—every regime remained profitable with U₁ well below 1.0.</p>
+            <p>In live deployment, practical boundaries still apply: backtests assume spot execution without 1%–3% bid-ask slippage on large multi-vessel fixtures, rely on timely proprietary data feeds, and require ongoing retraining to guard against structural regime shifts such as canal disruptions or new maritime emissions rules. Even with those caveats, the framework provides chartering and risk desks with an objective, economically explainable edge.</p>
+
+            <p class="section__more"><a href="index.html#projects">← Back to portfolio</a></p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© 2026 Moamen Abdelkawy</p>
+      <a class="site-footer__top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav a'));
+      if (!links.length) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var firstSection = document.getElementById('overview');
+
+      function setActive(id) {
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        if (id && byId[id]) byId[id].setAttribute('aria-current', 'true');
+      }
+
+      function checkScrollBounds() {
+        var doc = document.documentElement;
+        if (firstSection && window.scrollY < firstSection.offsetTop - 220) {
+          setActive(null);
+          return true;
+        }
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 40) {
+          setActive('validation');
+          return true;
+        }
+        return false;
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          if (checkScrollBounds()) return;
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        }, { rootMargin: '-38% 0px -55% 0px' });
+        Object.keys(byId).forEach(function (id) {
+          var section = document.getElementById(id);
+          if (section) observer.observe(section);
+        });
+      }
+
+      window.addEventListener('scroll', checkScrollBounds, { passive: true });
+    })();
+
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      if (!nav) return;
+      function updateMask() {
+        var atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4;
+        nav.classList.toggle('is-scrolled-end', atEnd);
+      }
+      nav.addEventListener('scroll', updateMask, { passive: true });
+      window.addEventListener('resize', updateMask, { passive: true });
+      updateMask();
+    })();
+  </script>
+</body>
+</html>

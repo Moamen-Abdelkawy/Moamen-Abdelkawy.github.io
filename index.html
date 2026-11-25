@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Moamen Abdelkawy | Economist, quant, and data scientist</title>
-  <meta name="description" content="Moamen Abdelkawy is a Cairo-based economist, quant, and data scientist: Senior Economic Analyst at National Navigation Company, MSc in Financial Engineering, and published technical author.">
+  <meta name="description" content="Moamen Abdelkawy is a Cairo-based economist, quant, and data scientist: Senior Economist at National Navigation Company, MSc in Financial Engineering, and published technical author.">
   <meta name="author" content="Moamen Abdelkawy">
   <link rel="canonical" href="https://moamen-abdelkawy.github.io/">
   <meta name="color-scheme" content="light">
@@ -13,19 +13,22 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Moamen Abdelkawy">
   <meta property="og:title" content="Moamen Abdelkawy | Economist, quant, and data scientist">
-  <meta property="og:description" content="Senior Economic Analyst at National Navigation Company. Econometrics and machine learning for shipping, commodity, and financial markets.">
+  <meta property="og:description" content="Senior Economist at National Navigation Company. Econometrics and machine learning for shipping, commodity, and financial markets.">
   <meta property="og:url" content="https://moamen-abdelkawy.github.io/">
-  <meta property="og:image" content="https://moamen-abdelkawy.github.io/profile-image.jpeg">
-  <meta property="og:image:alt" content="Portrait of Moamen Abdelkawy">
+  <meta property="og:image" content="https://moamen-abdelkawy.github.io/og-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Moamen Abdelkawy — Economist, Quant, and Data Scientist, with forecast fan chart">
   <meta property="profile:first_name" content="Moamen">
   <meta property="profile:last_name" content="Abdelkawy">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="@MoamenAbdelkawy">
+  <meta name="twitter:image" content="https://moamen-abdelkawy.github.io/og-card.png">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2236'/%3E%3Cpath d='M17 17 L29.5 7 V27.5 Z' fill='%233F72A3'/%3E%3Cpath d='M17 17 L29.5 12.5 V22 Z' fill='%238FB9DD'/%3E%3Cpath d='M3.5 19.5 L7 15.5 L10.5 18.5 L13.5 13.5 L17 17' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&amp;family=Public+Sans:wght@400..600&amp;display=swap">
+  <link rel="preload" href="fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 
   <script type="application/ld+json">
@@ -35,15 +38,19 @@
     "name": "Moamen Abdelkawy",
     "url": "https://moamen-abdelkawy.github.io/",
     "image": "https://moamen-abdelkawy.github.io/profile-image.jpeg",
-    "jobTitle": "Senior Economic Analyst",
-    "worksFor": { "@type": "Organization", "name": "National Navigation Company" },
+    "jobTitle": "Senior Economist",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "National Navigation Company",
+      "url": "https://nnc.com.eg/"
+    },
     "alumniOf": [
       { "@type": "CollegeOrUniversity", "name": "WorldQuant University" },
       { "@type": "CollegeOrUniversity", "name": "Aarhus University" },
       { "@type": "CollegeOrUniversity", "name": "Alexandria University" }
     ],
     "address": { "@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG" },
-    "email": "mailto:moamen.abdelkawy@outlook.com",
+    "email": "moamen.abdelkawy@outlook.com",
     "knowsLanguage": ["ar", "en"],
     "knowsAbout": ["Economics", "Econometrics", "Maritime economics", "Quantitative finance", "Time series forecasting", "Machine learning"],
     "sameAs": [
@@ -63,6 +70,7 @@
       <a class="site-header__name" href="#top">Moamen Abdelkawy</a>
       <nav class="site-nav" aria-label="Sections">
         <ul class="site-nav__list">
+          <li><a href="#profile">Profile</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#writing">Writing</a></li>
@@ -74,30 +82,36 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <!-- Hero -->
     <section class="hero" id="top" aria-labelledby="hero-name">
       <div class="hero__inner">
         <div class="hero__text">
           <h1 class="hero__name" id="hero-name">Moamen Abdelkawy</h1>
-          <p class="hero__role">Forecasting shipping, commodity and trade markets</p>
-          <p class="hero__lede">I’m an economist and quantitative analyst. I lead the economic and quantitative research behind National Navigation Company’s published market reports, and I build econometric and machine learning models that connect macroeconomic conditions to market outcomes.</p>
+          <p class="hero__role">Forecasting shipping, commodity, and trade markets</p>
+          <p class="hero__lede">I’m an economist and quantitative analyst. I lead the economic and quantitative research behind National Navigation Company’s <a href="https://nnc.com.eg/reports-download" target="_blank" rel="noopener">published market reports<span class="ext" aria-hidden="true">&nbsp;↗</span></a>, and I build econometric and machine learning models that connect macroeconomic conditions to market outcomes.</p>
           <ul class="hero__facts">
-            <li>Senior Economic Analyst, National Navigation Company</li>
+            <li>Senior Economist, National Navigation Company</li>
             <li>MSc in Financial Engineering, WorldQuant University</li>
             <li>Based in Cairo, Egypt</li>
           </ul>
+          <p class="print-contact">moamen.abdelkawy@outlook.com · moamen-abdelkawy.github.io · linkedin.com/in/moamen-abdelkawy · github.com/Moamen-Abdelkawy</p>
           <div class="hero__actions">
             <a class="button button--primary" href="mailto:moamen.abdelkawy@outlook.com">Email me</a>
-            <a class="button button--secondary" href="Moamen_Abdelkawy_Resume.pdf" download>Download résumé (PDF)</a>
+            <button class="button button--secondary copy-button" type="button" data-copy="moamen.abdelkawy@outlook.com" data-label="Copy email" hidden>Copy email</button>
+            <a class="button button--secondary" href="Moamen_Abdelkawy_Resume.pdf" target="_blank" rel="noopener">View résumé (PDF)</a>
             <span class="hero__profiles">
-              <a href="https://www.linkedin.com/in/moamen-abdelkawy">LinkedIn</a>
-              <a href="https://github.com/Moamen-Abdelkawy">GitHub</a>
+              <a href="https://www.linkedin.com/in/moamen-abdelkawy" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">&nbsp;↗</span></a>
+              <a href="https://github.com/Moamen-Abdelkawy" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a>
             </span>
+            <p class="copy-status visually-hidden" role="status" aria-live="polite"></p>
           </div>
         </div>
         <figure class="hero__portrait">
-          <img src="profile-image.jpeg" alt="Portrait of Moamen Abdelkawy" width="800" height="800" fetchpriority="high">
+          <picture>
+            <source type="image/webp" srcset="assets/profile-300.webp 300w, assets/profile-600.webp 600w" sizes="(max-width: 780px) 132px, 290px">
+            <img src="profile-image.jpeg" alt="Portrait of Moamen Abdelkawy" width="800" height="800" fetchpriority="high">
+          </picture>
         </figure>
       </div>
 
@@ -133,8 +147,8 @@
       <div class="section__inner">
         <h2 class="section__title" id="profile-title">Profile</h2>
         <div class="section__body prose">
-          <p>I’m a senior economic analyst and financial engineer with more than 18 years of experience combining rigorous economic analysis with quantitative modeling. I build models that connect the wider economy to market outcomes, and I explain what they mean to the people who have to make decisions with them.</p>
-          <p>My work ranges from predictive models and financial risk management to the data infrastructure that decisions rely on. I’m also a published technical author, and I spent 16 years teaching economics at university.</p>
+          <p>I’m a senior economist and financial engineer with 19 years of experience turning quantitative research into commercial and policy decisions. My work spans the full analytical pipeline—from designing economic databases and automated market-intelligence systems to building forecasting, scenario, and risk models for volatile markets.</p>
+          <p>Before moving full-time into industry research, I spent 16 years in the Faculty of Economic Studies at Alexandria University and taught applied data science and quantitative finance to global practitioners as a mentor and published technical author.</p>
         </div>
       </div>
     </section>
@@ -148,11 +162,11 @@
             <li class="role role--current">
               <p class="role__dates"><time datetime="2024-12">Dec 2024</time> – present</p>
               <div class="role__body">
-                <h3 class="role__title">Senior Economic Analyst</h3>
+                <h3 class="role__title">Senior Economist</h3>
                 <p class="role__org">National Navigation Company, Cairo</p>
                 <div class="role__text">
-                  <p>I research and forecast the maritime and shipping industry, measuring how global trade dynamics and economic shocks affect the sector. I build econometric, machine learning, and deep learning models that link macroeconomic variables to sector performance and inform the company’s strategic planning. I work in Python with NumPy, pandas, scikit-learn, TensorFlow, and PyTorch.</p>
-                  <p>I also use financial modeling, scenario analysis, and risk management to improve operational efficiency, assess market opportunities, and limit exposure to market volatility. I build and deploy production Power BI dashboards with scheduled refresh, and I maintain the economic databases behind our modeling and reporting. I write technical reports and policy briefs in Arabic and English for executives and government bodies, including the Ministry of Transport and port authorities.</p>
+                  <p>As the sole economist and quantitative analyst in the Planning, Research, and Business Development department, I lead all econometric, forecasting, and modeling work, delivering analysis directly to the Managing Director. I study global maritime and dry bulk markets—including Egypt’s seaborne trade across the Gulf, Europe, and Asia—and build Python machine learning and deep learning models (NumPy, pandas, scikit-learn, XGBoost, TensorFlow, PyTorch) linking macroeconomic shocks to sector performance. I also presented NNC’s freight-rate forecasting research at the 14th Ordinary General Assembly of the Arab Federation of Shipping (AFOS).</p>
+                  <p>Alongside research, I apply financial modeling, scenario analysis, and risk management to improve operational efficiency and mitigate market volatility exposure. I build and deploy production Power BI dashboards with scheduled refresh, maintain the economic databases behind our modeling and public market reports, and author technical reports and policy briefs in Arabic and English for executives and government bodies, including the Ministry of Transport and port authorities.</p>
                 </div>
               </div>
             </li>
@@ -188,37 +202,43 @@
         <div class="section__body">
           <article class="feature">
             <h3 class="feature__title">Panamax freight rate forecasting</h3>
-            <p class="feature__meta">MSc capstone, WorldQuant University. Publication pending.</p>
-            <p>An XGBoost forecasting system for Panamax dry bulk freight rates, built on 245 features engineered from more than 700 market indicators. I also found a systematic timing bias in the forecasts and corrected it with phase-shift calibration.</p>
+            <p class="feature__meta">MSc capstone, WorldQuant University · Presented at the 14th General Assembly, Arab Federation of Shipping (AFOS)</p>
+            <p>Six multi-horizon XGBoost models forecasting Transatlantic (P1A_82) and Transpacific (P3A_82) dry bulk freight rates 1, 2, and 4 weeks ahead, built on 245 features engineered from 701 Baltic Exchange, Clarksons, and bunker indicators. Guided by basin-arbitrage dynamics—ranked second overall in feature importance—we identified a systematic 5–7 day timing bias from bilateral broker reporting lags and corrected it with phase-shift calibration.</p>
             <table class="results">
-              <caption class="visually-hidden">Results of the Panamax freight rate forecasting system</caption>
+              <caption class="visually-hidden">Summary results of the Panamax freight rate forecasting system</caption>
               <thead>
                 <tr><th scope="col">Measure</th><th scope="col">Result</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Reduction in RMSE after phase-shift calibration</th><td>34%</td></tr>
-                <tr><th scope="row">Directional accuracy</th><td>77%</td></tr>
-                <tr><th scope="row">Sharpe ratio in commercial validation</th><td>2.0–3.1</td></tr>
-                <tr><th scope="row">Engineered features, from 700+ market indicators</th><td>245</td></tr>
+                <tr><th scope="row">Mean RMSE reduction after calibration (up to 64.3%)</th><td>34.2%</td></tr>
+                <tr><th scope="row">1-week directional accuracy (Atlantic / Pacific)</th><td>93.4% / 97.6%</td></tr>
+                <tr><th scope="row">Best Theil’s U₁ vs. random walk (Pacific 1-week)</th><td>0.339</td></tr>
+                <tr><th scope="row">Simulated trading win rate &amp; Sharpe ratio (6,268 trades)</th><td>77.2% · 2.0–3.1</td></tr>
               </tbody>
             </table>
+            <p class="feature__links"><a href="panamax-forecasting.html">Read research brief and methodology →</a></p>
           </article>
 
           <div class="projects">
             <article class="project">
+              <h3 class="project__title">NNC daily shipping market report</h3>
+              <p>Designed and built National Navigation Company’s public daily market report: a self-validating Excel reporting system with automated data-integrity gates, Baltic FFA contract-roll logic computed on a UK business-day calendar using dynamic array functions, and documented methodology.</p>
+              <p class="project__links"><a href="https://nnc.com.eg/reports-download" target="_blank" rel="noopener">View published reports at nnc.com.eg<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
+            </article>
+            <article class="project">
               <h3 class="project__title">International trade flow analyzer</h3>
               <p>A Python tool for bilateral trade analysis that combines harmonized BACI data (1995–2024) with the live UN COMTRADE API (1962–present). It has an interactive command-line interface, fuzzy country matching, multi-level HS code support, professional visualizations, and comprehensive data exports for researchers, policy analysts, and trade professionals.</p>
-              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/InternationalTradeAnalyzer">View code on GitHub</a></p>
+              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/InternationalTradeAnalyzer" target="_blank" rel="noopener">View code on GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
             </article>
             <article class="project">
               <h3 class="project__title">Multi-asset deep learning trading</h3>
               <p>Single-output and multi-output LSTM models that predict 25-day returns for five ETFs across equities, bonds, gold, and oil. The predictions drive long-short strategies that outperformed buy-and-hold benchmarks on risk-adjusted returns in backtests, and the project also covers tactical asset allocation.</p>
-              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/MultiAssetDLTrading">View code on GitHub</a></p>
+              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/MultiAssetDLTrading" target="_blank" rel="noopener">View code on GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
             </article>
             <article class="project">
               <h3 class="project__title">Sales volume prediction</h3>
               <p>Random forest, MLP, and TabNet models that forecast sales volume from product positioning, pricing, and promotion data, with statistical testing (ANOVA, Shapiro–Wilk) and feature engineering to identify the main sales drivers.</p>
-              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/SalesVolumePrediction">View code on GitHub</a></p>
+              <p class="project__links"><a href="https://github.com/Moamen-Abdelkawy/SalesVolumePrediction" target="_blank" rel="noopener">View code on GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
             </article>
           </div>
 
@@ -226,19 +246,11 @@
             <h3 class="more__title">More on GitHub</h3>
             <ul class="more__list">
               <li>
-                <a href="https://github.com/Moamen-Abdelkawy/InventoryManagementAPI">Inventory management API</a>
+                <a href="https://github.com/Moamen-Abdelkawy/InventoryManagementAPI" target="_blank" rel="noopener">Inventory management API<span class="ext" aria-hidden="true">&nbsp;↗</span></a>
                 <p>A minimal inventory management system written in Go with Gin and GORM, featuring CRUD endpoints with UUIDs, rate limiting, and PostgreSQL integration, plus pagination, filtering, and sorting.</p>
               </li>
-              <li>
-                <a href="https://github.com/Moamen-Abdelkawy/BitcoinPricePrediction">Bitcoin price prediction</a>
-                <p>An analysis and modeling project that predicts Bitcoin prices with multi-layer perceptron (MLP) and convolutional neural network (CNN) models, including data preprocessing.</p>
-              </li>
-              <li>
-                <a href="https://github.com/Moamen-Abdelkawy/BayWheelsUsagePatterns">Bay Wheels usage patterns</a>
-                <p>An investigation of how usage differs between customers and subscribers of Bay Wheels, the San Francisco Bay Area bike-share system, and of the main factors that affect trip duration.</p>
-              </li>
             </ul>
-            <p class="section__more"><a href="https://github.com/Moamen-Abdelkawy?tab=repositories">See all my repositories on GitHub</a></p>
+            <p class="section__more"><a href="https://github.com/Moamen-Abdelkawy?tab=repositories" target="_blank" rel="noopener">See all my repositories on GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
           </div>
         </div>
       </div>
@@ -249,19 +261,19 @@
       <div class="section__inner">
         <h2 class="section__title" id="writing-title">Writing</h2>
         <div class="section__body">
-          <p class="section__intro">I’ve written practical guides on data science, machine learning, and Python for the Udacity blog.</p>
+          <p class="section__intro">I’ve written practical guides on time series, machine learning, and Python for the Udacity blog.</p>
           <ul class="articles">
-            <li><a href="https://www.udacity.com/blog/data-cleaning-techniques-how-to-prepare-clean-data-for-analysis/">Data Cleaning Techniques: How to Prepare Clean Data for Analysis</a><span class="articles__meta">Data analysis, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/visual-studio-code-tutorial-for-beginners-productivity-tips-and-extensions/">Visual Studio Code Tutorial for Beginners: Productivity Tips and Extensions</a><span class="articles__meta">Developer tools, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/a-developers-guide-to-the-git-push-command-with-practical-examples/">A Developer’s Guide to the git push Command with Practical Examples</a><span class="articles__meta">Developer tools, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/cross-validation-in-machine-learning-techniques-and-best-practices/">Cross Validation in Machine Learning: Techniques and Best Practices</a><span class="articles__meta">Machine learning, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/how-to-install-tensorflow-a-beginners-step-by-step-guide/">How to Install TensorFlow: A Beginner’s Step-by-Step Guide</a><span class="articles__meta">Machine learning, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/exploratory-data-analysis-eda-why-its-crucial-for-data-science/">Exploratory Data Analysis (EDA): Why It’s Crucial for Data Science</a><span class="articles__meta">Data science, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/how-to-clean-data-for-machine-learning-best-practices-and-tools/">How to Clean Data for Machine Learning: Best Practices and Tools</a><span class="articles__meta">Machine learning, 2025</span></li>
-            <li><a href="https://www.udacity.com/blog/the-ultimate-pandas-cheat-sheet-essential-functions-and-tricks-for-data-manipulation/">The Ultimate Pandas Cheat Sheet: Essential Functions and Tricks for Data Manipulation</a><span class="articles__meta">Python, 2024</span></li>
-            <li><a href="https://www.udacity.com/blog/introduction-to-time-series-analysis-techniques-and-use-cases-in-data-science/">Introduction to Time Series Analysis: Techniques and Use Cases in Data Science</a><span class="articles__meta">Time series, 2024</span></li>
+            <li><a href="https://www.udacity.com/blog/introduction-to-time-series-analysis-techniques-and-use-cases-in-data-science/" target="_blank" rel="noopener">Introduction to Time Series Analysis: Techniques and Use Cases in Data Science<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Time series, 2024</span></li>
+            <li><a href="https://www.udacity.com/blog/cross-validation-in-machine-learning-techniques-and-best-practices/" target="_blank" rel="noopener">Cross Validation in Machine Learning: Techniques and Best Practices<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Machine learning, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/exploratory-data-analysis-eda-why-its-crucial-for-data-science/" target="_blank" rel="noopener">Exploratory Data Analysis (EDA): Why It’s Crucial for Data Science<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Data science, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/how-to-clean-data-for-machine-learning-best-practices-and-tools/" target="_blank" rel="noopener">How to Clean Data for Machine Learning: Best Practices and Tools<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Machine learning, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/data-cleaning-techniques-how-to-prepare-clean-data-for-analysis/" target="_blank" rel="noopener">Data Cleaning Techniques: How to Prepare Clean Data for Analysis<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Data analysis, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/the-ultimate-pandas-cheat-sheet-essential-functions-and-tricks-for-data-manipulation/" target="_blank" rel="noopener">The Ultimate Pandas Cheat Sheet: Essential Functions and Tricks for Data Manipulation<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Python, 2024</span></li>
+            <li><a href="https://www.udacity.com/blog/how-to-install-tensorflow-a-beginners-step-by-step-guide/" target="_blank" rel="noopener">How to Install TensorFlow: A Beginner’s Step-by-Step Guide<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Machine learning, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/a-developers-guide-to-the-git-push-command-with-practical-examples/" target="_blank" rel="noopener">A Developer’s Guide to the git push Command with Practical Examples<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Developer tools, 2025</span></li>
+            <li><a href="https://www.udacity.com/blog/visual-studio-code-tutorial-for-beginners-productivity-tips-and-extensions/" target="_blank" rel="noopener">Visual Studio Code Tutorial for Beginners: Productivity Tips and Extensions<span class="ext" aria-hidden="true">&nbsp;↗</span></a><span class="articles__meta">Developer tools, 2025</span></li>
           </ul>
-          <p class="section__more"><a href="https://www.udacity.com/blog/author/moamen-abdelkawy/">See my author page on Udacity</a></p>
+          <p class="section__more"><a href="https://www.udacity.com/blog/author/moamen-abdelkawy/" target="_blank" rel="noopener">See my author page on Udacity<span class="ext" aria-hidden="true">&nbsp;↗</span></a></p>
         </div>
       </div>
     </section>
@@ -327,7 +339,7 @@
             </div>
             <div class="skill-group">
               <h3 class="skill-group__title">Data science and programming</h3>
-              <p>Python (NumPy, pandas, scikit-learn, Statsmodels, XGBoost, TensorFlow, PyTorch), SQL, advanced Excel, Git and GitHub, and some R. Visualization with Matplotlib, Seaborn, and Power BI.</p>
+              <p>Python (NumPy, pandas, scikit-learn, Statsmodels, XGBoost, TensorFlow, PyTorch), SQL, R, Go, advanced Excel, and Git and GitHub. Production dashboards and visualization with Power BI (DAX, Power Query), Matplotlib, and Seaborn.</p>
             </div>
             <div class="skill-group">
               <h3 class="skill-group__title">Communication and languages</h3>
@@ -372,15 +384,15 @@
           <p class="contact__note">Email is the quickest way to reach me. I’m based in Cairo and work in English and Arabic.</p>
           <div class="contact__email">
             <a class="contact__address" href="mailto:moamen.abdelkawy@outlook.com">moamen.abdelkawy@outlook.com</a>
-            <button class="copy-button" type="button" data-copy="moamen.abdelkawy@outlook.com" aria-label="Copy email address" hidden>Copy</button>
-            <p class="copy-status visually-hidden" role="status"></p>
+            <button class="copy-button" type="button" data-copy="moamen.abdelkawy@outlook.com" data-label="Copy" hidden>Copy<span class="visually-hidden"> email address</span></button>
+            <p class="copy-status visually-hidden" role="status" aria-live="polite"></p>
           </div>
           <ul class="contact__links">
-            <li><a href="https://www.linkedin.com/in/moamen-abdelkawy">LinkedIn</a></li>
-            <li><a href="https://github.com/Moamen-Abdelkawy">GitHub</a></li>
-            <li><a href="https://x.com/MoamenAbdelkawy">X (Twitter)</a></li>
-            <li><a href="https://www.udacity.com/blog/author/moamen-abdelkawy/">Udacity author page</a></li>
-            <li><a href="Moamen_Abdelkawy_Resume.pdf" download>Download résumé (PDF)</a></li>
+            <li><a href="https://www.linkedin.com/in/moamen-abdelkawy" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">&nbsp;↗</span></a></li>
+            <li><a href="https://github.com/Moamen-Abdelkawy" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">&nbsp;↗</span></a></li>
+            <li><a href="https://x.com/MoamenAbdelkawy" target="_blank" rel="noopener">X (Twitter)<span class="ext" aria-hidden="true">&nbsp;↗</span></a></li>
+            <li><a href="https://www.udacity.com/blog/author/moamen-abdelkawy/" target="_blank" rel="noopener">Udacity author page<span class="ext" aria-hidden="true">&nbsp;↗</span></a></li>
+            <li><a href="Moamen_Abdelkawy_Resume.pdf" target="_blank" rel="noopener">View résumé (PDF)</a></li>
           </ul>
         </div>
       </div>
@@ -390,38 +402,71 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <p>© 2026 Moamen Abdelkawy</p>
+      <a class="site-footer__top" href="#top">Back to top ↑</a>
     </div>
   </footer>
 
   <script>
-    // Mark the section currently in view in the navigation.
+    // Mark the section currently in view in the navigation, including top and bottom bounds.
     (function () {
       var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav a'));
-      if (!('IntersectionObserver' in window) || !links.length) return;
+      if (!links.length) return;
       var byId = {};
       links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          links.forEach(function (a) { a.removeAttribute('aria-current'); });
-          var link = byId[entry.target.id];
-          if (link) link.setAttribute('aria-current', 'true');
+      var firstSection = document.getElementById('profile');
+
+      function setActive(id) {
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        if (id && byId[id]) byId[id].setAttribute('aria-current', 'true');
+      }
+
+      function checkScrollBounds() {
+        var doc = document.documentElement;
+        if (firstSection && window.scrollY < firstSection.offsetTop - 220) {
+          setActive(null);
+          return true;
+        }
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 40) {
+          setActive('contact');
+          return true;
+        }
+        return false;
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          if (checkScrollBounds()) return;
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        }, { rootMargin: '-38% 0px -55% 0px' });
+        Object.keys(byId).forEach(function (id) {
+          var section = document.getElementById(id);
+          if (section) observer.observe(section);
         });
-      }, { rootMargin: '-40% 0px -55% 0px' });
-      Object.keys(byId).forEach(function (id) {
-        var section = document.getElementById(id);
-        if (section) observer.observe(section);
-      });
+      }
+
+      window.addEventListener('scroll', checkScrollBounds, { passive: true });
     })();
 
-    // Copy the email address and confirm on the button.
+    // Clear the mobile nav right-edge fade mask once scrolled to the end.
     (function () {
-      var button = document.querySelector('.copy-button');
-      var status = document.querySelector('.copy-status');
+      var nav = document.querySelector('.site-nav');
+      if (!nav) return;
+      function updateMask() {
+        var atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4;
+        nav.classList.toggle('is-scrolled-end', atEnd);
+      }
+      nav.addEventListener('scroll', updateMask, { passive: true });
+      window.addEventListener('resize', updateMask, { passive: true });
+      updateMask();
+    })();
+
+    // Copy email buttons in hero and contact sections.
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.copy-button[data-copy]'));
       var address = document.querySelector('.contact__address');
-      if (!button || !status || !address) return;
-      var label = button.textContent;
-      var timer;
+      if (!buttons.length) return;
 
       function fallbackCopy(text) {
         var field = document.createElement('textarea');
@@ -437,46 +482,58 @@
         return copied;
       }
 
-      function reset() {
-        button.textContent = label;
-        button.classList.remove('is-copied');
-        status.classList.add('visually-hidden');
-        status.textContent = '';
-      }
+      buttons.forEach(function (button) {
+        var container = button.parentElement;
+        var status = container ? container.querySelector('.copy-status') : null;
+        var defaultHTML = button.innerHTML;
+        var timer;
 
-      function show(copied) {
-        clearTimeout(timer);
-        reset();
-        if (copied) {
-          button.textContent = 'Copied';
-          button.classList.add('is-copied');
-          status.textContent = 'Email address copied.';
-          timer = setTimeout(reset, 2000);
-        } else {
-          // Select the address so it can be copied by hand.
-          var range = document.createRange();
-          range.selectNodeContents(address);
-          var selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(range);
-          status.classList.remove('visually-hidden');
-          status.textContent = 'Couldn’t copy automatically. The address is selected, so you can copy it yourself.';
-          timer = setTimeout(reset, 6000);
+        function reset() {
+          button.innerHTML = defaultHTML;
+          button.classList.remove('is-copied');
+          if (status) {
+            status.classList.add('visually-hidden');
+            status.textContent = '';
+          }
         }
-      }
 
-      button.addEventListener('click', function () {
-        var text = button.getAttribute('data-copy');
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(text).then(
-            function () { show(true); },
-            function () { show(fallbackCopy(text)); }
-          );
-        } else {
-          show(fallbackCopy(text));
+        function show(copied) {
+          clearTimeout(timer);
+          reset();
+          if (copied) {
+            button.innerHTML = 'Copied<span class="visually-hidden"> email address</span>';
+            button.classList.add('is-copied');
+            if (status) status.textContent = 'Email address copied.';
+            timer = setTimeout(reset, 2000);
+          } else {
+            if (address) {
+              var range = document.createRange();
+              range.selectNodeContents(address);
+              var selection = window.getSelection();
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
+            if (status) {
+              status.classList.remove('visually-hidden');
+              status.textContent = 'Couldn’t copy automatically. Copy moamen.abdelkawy@outlook.com directly.';
+            }
+            timer = setTimeout(reset, 6000);
+          }
         }
+
+        button.addEventListener('click', function () {
+          var text = button.getAttribute('data-copy');
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(
+              function () { show(true); },
+              function () { show(fallbackCopy(text)); }
+            );
+          } else {
+            show(fallbackCopy(text));
+          }
+        });
+        button.hidden = false;
       });
-      button.hidden = false;
     })();
   </script>
 </body>

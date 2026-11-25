@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://moamen-abdelkawy.github.io/sitemap.xml
